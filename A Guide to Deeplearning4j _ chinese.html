@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="pingback" href="https://www.baeldung.com/xmlrpc.php">
+<link rel="apple-touch-icon" sizes="57x57" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/manifest.json">
+<link rel="mask-icon" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/safari-pinned-tab.svg" color="#63b175">
+<link rel="shortcut icon" href="https://www.baeldung.com/wp-content/themes/baeldung/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="https://www.baeldung.com/wp-content/themes/baeldung/favicon/mstile-144x144.png">
+<meta name="msapplication-config" content="https://www.baeldung.com/wp-content/themes/baeldung/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<link media="all" href="https://www.baeldung.com/wp-content/cache/autoptimize/1/css/autoptimize_23c364535122c061ff19c3f5418740fe.css" rel="stylesheet">
+<title>A Guide to Deeplearning4j | Baeldung</title>
+
+<meta name="description" content="See how to create a simple neural network using deeplearning4j library in Java.">
+<link rel="canonical" href="https://www.baeldung.com/deeplearning4j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Guide to Deeplearning4j | Baeldung">
+<meta property="og:description" content="See how to create a simple neural network using deeplearning4j library in Java.">
+<meta property="og:url" content="https://www.baeldung.com/deeplearning4j">
+<meta property="og:site_name" content="Baeldung">
+<meta property="og:image" content="https://www.baeldung.com/wp-content/uploads/2017/08/On-Baeldung-2.jpg">
+<meta property="article:published_time" content="2017-10-10T18:11:46Z">
+<meta property="article:modified_time" content="2019-08-15T02:45:43Z">
+<meta property="og:image:secure_url" content="https://www.baeldung.com/wp-content/uploads/2017/08/On-Baeldung-2.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@baeldung">
+<meta name="twitter:domain" content="www.baeldung.com">
+<meta name="twitter:title" content="A Guide to Deeplearning4j | Baeldung">
+<meta name="twitter:description" content="See how to create a simple neural network using deeplearning4j library in Java.">
+<meta name="twitter:image" content="https://www.baeldung.com/wp-content/uploads/2017/08/On-Baeldung-2.jpg">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<style id="wpbs-style-inline-css" type="text/css">
+#wrap a  { color: #63b175; }
+ #wrap a:link, #wrap a:visited   { color: #63b175; }
+ #wrap a.nav--menu_item_anchor  { color: white; }
+ #wrap a.dropdown--item_anchor:hover .dropdown--item_text, #wrap  a.dropdown--item_anchor:focus .dropdown--item_text, #wrap  a.dropdown--item_anchor:active .dropdown--item_text  { color: #63b175; }
+ .single #wrap  .categories a,
+				.single #wrap  .post-tags a,
+				.archive #wrap  .related-tags a,
+				.archive #wrap  .related-categories a,
+				.archive #wrap  a.archive #wrap -parent-cat  { background-color: #63b175; color:white }
+ .single #wrap  .post-tags a, .archive #wrap  .related-tags a  { background-color: #333; border-bottom: 4px solid #63b175 } 
+ .single #wrap  .categories a:hover,
+				.single #wrap  .categories a:focus,
+				.single #wrap  .post-tags a:hover,
+				.single #wrap  .post-tags a:focus,
+				.archive #wrap  .related-tags a:hover,
+				.archive #wrap  .related-tags a:focus,
+				.archive #wrap  .related-categories a:hover,
+				.archive #wrap  .related-categories a:focus,
+				.archive #wrap  a.archive #wrap -parent-cat:hover,
+				.archive #wrap  a.archive #wrap -parent-cat:focus  { background-color: #4E9359; }
+ #wrap section.further-reading-posts .fr-item .ex, #wrap  section.further-reading-posts .fr-item a  { color: #7386a6; }
+ #wrap .btn-default:hover, #wrap  .btn-default:focus  { background-color: #63b175; border-color: #63b175; }
+ #wrap .btn-default:focus, #wrap  .btn-default:focus:active  { background-color: #4E9359; border-color: #4E9359 }
+ #wrap .author  { border-left: 1px solid #63b175; }
+ #wrap .big-nav-top-bar  { background: #63b175; }
+ #wrap .menu-mobile  { background: #63b175; }
+ #wrap .header--menu  { background-color: #63b175; }
+ #wrap .nav--menu_item_highlighted  { background: #63b175 } 
+ #wrap .nav--menu_item_darkened  { background: #4E9359 } 
+ #wrap li.big-nav-icon  { background-color: #4E9359; }
+ #wrap .big-nav-content hr  { color: #4E9359; border-color: #4E9359; }
+ #wrap #big-nav a.highlight b  { color: #63b175 !important }
+ #wrap #big-nav a.highlight::before  { color: #63b175 !important }
+ #wrap .big-nav-content > .row > .col-md-6 ul li a  { color: white; }
+ #wrap .big-nav-content > .row > .col-md-6 a  { color: white; }
+ #wrap .big-nav-content > .row > .col-md-6 ul li a:hover  { color: #A4B4D3; }
+ #wrap a.nav--menu_item_anchor:active, #wrap  a.nav--menu_item_anchor_active  { background: #535353; }
+ #wrap .nav--dropdown  { background: #535353; }
+ #wrap .nav--dropdown_content  { background: #535353; } 
+ #wrap .nav--dropdown_content:before, #wrap  .nav--dropdown_content:after  { background-color: #535353; }
+ #wrap #menu-search.active .btn-search  { background-color: #4E9359; } 
+ #wrap #menu-search.active .btn-search:hover  { background-color: #63b175; } 
+ #wrap .pagination > li > a, #wrap  .pagination > li > span  { color: #63b175; }
+ #wrap .pagination > .active > a, #wrap 
+				.pagination > .active > span, #wrap 
+				.pagination > .active > a:hover, #wrap 
+				.pagination > .active > span:hover, #wrap 
+				.pagination > .active > a:focus, #wrap 
+				.pagination > .active > span:focus  { color: white; background-color: #63b175; }
+ #wrap .archive-columns .post-title  { color: #4E9359; }
+ body.author.archive #wrap  .author-fullname  { color: #4E9359 } 
+ body #wrap  .syntaxhighlighter .keyword,
+				body #wrap  .syntaxhighlighter .string,
+				body #wrap  .syntaxhighlighter .string a  { color: #63b175 !important }
+ body #wrap  .syntaxhighlighter .gutter .line  { border-right: 3px solid #63b175 !important; } 
+ #wrap  .short_end  { border: 4px solid #63b175 !important; }
+ #wrap #wpcomm .wc-load-more-submit:hover, #wrap  #wpcomm .wc-load-more-submit:focus  { background-color: #63b175; } 
+ #wrap .wpcf7 .wpcf7-submit  { background-color: #63b175; }
+ #wrap .thrv-button a.tcb-button-link, #wrap  .thrv-button-group-item a.tcb-button-link  { color: #fff; }
+ #wrap .archive-columns.click-whole .post-title .hover-wrapper:before  { background-color: #63b175; }
+ #wrap .content-info a  { color: rgba(255, 255, 255, 0.5);	}
+ #wrap .content-info a:hover  { color: rgba(255, 255, 255, 1);	}
+</style>
+
+<link rel="https://api.w.org/" href="https://www.baeldung.com/wp-json/">
+<link rel="shortlink" href="https://www.baeldung.com/?p=25173">
+<link rel="alternate" type="application/json+oembed" href="https://www.baeldung.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.baeldung.com%2Fdeeplearning4j">
+<link rel="alternate" type="text/xml+oembed" href="https://www.baeldung.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.baeldung.com%2Fdeeplearning4j&amp;format=xml">
+<style type="text/css">:not(#tve) .ttfm6{font-family: 'Raleway' !important;font-weight: 300 !important;}.ttfm6 input, .ttfm6 select, .ttfm6 textarea, .ttfm6 button {font-family: 'Raleway' !important;font-weight: 300 !important;}:not(#tve) .ttfm6.bold_text,.ttfm6 .bold_text,.ttfm6 b,.ttfm6 strong{font-weight: 700 !important;}.ttfm6.bold_text,.ttfm6 .bold_text,.ttfm6 b,.ttfm6 strong input, .ttfm6.bold_text,.ttfm6 .bold_text,.ttfm6 b,.ttfm6 strong select, .ttfm6.bold_text,.ttfm6 .bold_text,.ttfm6 b,.ttfm6 strong textarea, .ttfm6.bold_text,.ttfm6 .bold_text,.ttfm6 b,.ttfm6 strong button {font-weight: 700 !important;}:not(#tve) .ttfm7{font-family: 'Raleway' !important;font-weight: 600 !important;}.ttfm7 input, .ttfm7 select, .ttfm7 textarea, .ttfm7 button {font-family: 'Raleway' !important;font-weight: 600 !important;}:not(#tve) .ttfm7.bold_text,.ttfm7 .bold_text,.ttfm7 b,.ttfm7 strong{font-weight: 700 !important;}.ttfm7.bold_text,.ttfm7 .bold_text,.ttfm7 b,.ttfm7 strong input, .ttfm7.bold_text,.ttfm7 .bold_text,.ttfm7 b,.ttfm7 strong select, .ttfm7.bold_text,.ttfm7 .bold_text,.ttfm7 b,.ttfm7 strong textarea, .ttfm7.bold_text,.ttfm7 .bold_text,.ttfm7 b,.ttfm7 strong button {font-weight: 700 !important;}</style><style type="text/css" id="tve_global_variables">:root{--tcb-color-0:rgb(51, 51, 51);}</style>
+
+<style type="text/css">
+.syntaxhighlighter { line-height: 1.2em }
+.syntaxhighlighter,
+.syntaxhighlighter a,
+.syntaxhighlighter div,
+.syntaxhighlighter code,
+.syntaxhighlighter table,
+.syntaxhighlighter table td,
+.syntaxhighlighter table tr,
+.syntaxhighlighter table tbody,
+.syntaxhighlighter table thead,
+.syntaxhighlighter table caption,
+.syntaxhighlighter textarea {
+font-size: 12px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+.syntaxhighlighter table caption {
+/* For Title(Caption) */  
+font-size: 14px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+.syntaxhighlighter.nogutter td.code .line {
+/* Set the left padding space when no-gutter in ver. 3.0 */  
+padding-left: 3px !important;
+}
+.syntaxhighlighter {
+/* For Chrome/Safari(WebKit) */  
+/* Hide the superfluous vertical scrollbar in ver. 3.0 */  
+overflow-y: hidden !important;
+padding: 1px !important;
+}
+.widget-area.syntaxhighlighter a,
+.widget-area.syntaxhighlighter div,
+.widget-area.syntaxhighlighter code,
+.widget-area.syntaxhighlighter table,
+.widget-area.syntaxhighlighter table td,
+.widget-area.syntaxhighlighter table tr,
+.widget-area.syntaxhighlighter table tbody,
+.widget-area.syntaxhighlighter table thead,
+.widget-area.syntaxhighlighter table caption,
+.widget-area.syntaxhighlighter textarea {
+/* For Widget */  
+font-size: 14px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+.widget-area table caption {
+/* For Widget */  
+/* For Title(Caption) */  
+font-size: 10px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+</style>
+
+<style>
+                #wpcomm .wc_new_comment{background:#00B38F;}
+                #wpcomm .wc_new_reply{background:#00B38F;}
+                #wpcomm .wc-form-wrapper{ background:none; } /* ->formBGColor */
+                #wpcomm .wpdiscuz-front-actions{background:#F9F9F9;}
+                #wpcomm .wpdiscuz-subscribe-bar{background:#F9F9F9;}
+                #wpcomm select,
+                #wpcomm input[type="text"],
+                #wpcomm input[type="email"],
+                #wpcomm input[type="url"],
+                #wpcomm input[type="date"],
+                #wpcomm input[type="color"]{border:#D9D9D9 1px solid;}
+                #wpcomm .wc-comment .wc-comment-right{background:#FEFEFE;}
+                #wpcomm .wc-reply .wc-comment-right{background:#F8F8F8;}
+                #wpcomm .wc-comment-right .wc-comment-text, 
+                #wpcomm .wc-comment-right .wc-comment-text *{
+                    font-size:14px;
+                }
+                #wpcomm .wc-blog-subscriber > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-subscriber > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-subscriber > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-new2visualmid > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-new2visualmid > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-new2visualmid > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-new2visualsenior > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-new2visualsenior > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-new2visualsenior > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-new2teamjunior > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-new2teamjunior > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-new2teamjunior > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-new2teammid > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-new2teammid > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-new2teammid > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-new2marketingjunior > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-new2marketingjunior > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-new2marketingjunior > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-new2marketingmid > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-new2marketingmid > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-new2marketingmid > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-new2marketingsenior > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-new2marketingsenior > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-new2marketingsenior > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-javauxdev > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-javauxdev > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-javauxdev > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-contenteditor > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-contenteditor > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-contenteditor > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-javacommunitymanager > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-javacommunitymanager > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-javacommunitymanager > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-new2author > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-new2author > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-new2author > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-new2contributor > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-new2contributor > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-new2contributor > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-new2editor > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-new2editor > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-new2editor > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-custom_permalinks_manager > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-custom_permalinks_manager > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-custom_permalinks_manager > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-backwpup_admin > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-backwpup_admin > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-backwpup_admin > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-backwpup_check > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-backwpup_check > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-backwpup_check > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-backwpup_helper > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-backwpup_helper > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-backwpup_helper > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-multisite-test > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-multisite-test > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-multisite-test > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-post_author > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-post_author > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-post_author > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-guest > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-guest > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-guest > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }                #wpcomm .wc-comment .wc-comment-left .wc-comment-label{ background: #ffffff;}
+                #wpcomm .wc-comment-left .wc-follow-user{color:#00B38F;}
+                #wpcomm .wc-load-more-submit{border:1px solid #D9D9D9;}
+                #wpcomm .wc-new-loaded-comment > .wc-comment-right{background:#FFFAD6;}
+                #wpcomm .wpdiscuz-subscribe-bar{color:#777;}
+                #wpcomm .wpdiscuz-front-actions .wpdiscuz-sbs-wrap span{color: #777;}
+                #wpcomm .page-numbers{color:#555;border:#555 1px solid;}
+                #wpcomm span.current{background:#555;}
+                #wpcomm .wpdiscuz-readmore{cursor:pointer;color:#00B38F;}
+                #wpcomm .wpdiscuz-textarea-wrap{border:#D9D9D9 1px solid;} .wpd-custom-field .wcf-pasiv-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label {color: #DDDDDD;}
+                #wpcomm .wpdiscuz-item .wpdiscuz-rating:not(:checked) > label:hover,.wpdiscuz-rating:not(:checked) > label:hover ~ label {   }#wpcomm .wpdiscuz-item .wpdiscuz-rating > input ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label{color: #FFED85;} 
+                #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label:hover ~ input:checked ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked + label:hover ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover ~ label, .wpd-custom-field .wcf-active-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label{ color:#FFD700;}
+                #wpcomm .wc-comment-header{border-top: 1px solid #dedede;}
+                #wpcomm .wc-reply .wc-comment-header{border-top: 1px solid #dedede;}
+                /* Buttons */
+                #wpcomm button, 
+                #wpcomm input[type="button"], 
+                #wpcomm input[type="reset"], 
+                #wpcomm input[type="submit"]{ border: 1px solid #555555; color: #FFFFFF; background-color: #555555; }
+                #wpcomm button:hover, 
+                #wpcomm button:focus,
+                #wpcomm input[type="button"]:hover, 
+                #wpcomm input[type="button"]:focus, 
+                #wpcomm input[type="reset"]:hover, 
+                #wpcomm input[type="reset"]:focus, 
+                #wpcomm input[type="submit"]:hover, 
+                #wpcomm input[type="submit"]:focus{ border: 1px solid #333333; background-color: #333333;  }
+                #wpcomm .wpdiscuz-sort-buttons{color:#777777;}
+                #wpcomm .wpdiscuz-sort-button{color:#777777; cursor:pointer;}
+                #wpcomm .wpdiscuz-sort-button:hover{color:#00B38F!important;cursor:pointer;}
+                #wpcomm .wpdiscuz-sort-button-active{color:#00B38F!important;cursor:default!important;}
+                #wpcomm .wc-cta-button, 
+                #wpcomm .wc-cta-button-x{color:#777777; }
+                #wpcomm .wc-vote-link.wc-up{color:#999999;}
+                #wpcomm .wc-vote-link.wc-down{color:#999999;}
+                #wpcomm .wc-vote-result{color:#999999;}
+                #wpcomm .wpf-cta{color:#999999; }
+                #wpcomm .wc-comment-link .wc-share-link .wpf-cta{color:#eeeeee;}
+                #wpcomm .wc-footer-left .wc-reply-button{border:1px solid #00B38F!important; color: #00B38F;}
+                #wpcomm .wpf-cta:hover{background:#00B38F!important; color:#FFFFFF;}
+                #wpcomm .wc-footer-left .wc-reply-button.wc-cta-active, #wpcomm .wc-cta-active{background:#00B38F!important; color:#FFFFFF;}
+                #wpcomm .wc-cta-button:hover{background:#00B38F!important; color:#FFFFFF;}
+                #wpcomm .wc-footer-right .wc-toggle,
+                #wpcomm .wc-footer-right .wc-toggle a,
+                #wpcomm .wc-footer-right .wc-toggle i{color:#00B38F;}
+                /* STICKY COMMENT HEADER */
+                #wpcomm .wc-sticky-comment.wc-comment .wc-comment-header .wpd-sticky{background: #1ecea8; color: #ffffff; }
+                #wpcomm .wc-closed-comment.wc-comment .wc-comment-header .wpd-closed{background: #aaaaaa; color: #ffffff;}
+                /* PRIVATE COMMENT HEADER */
+                #wpcomm .wc-private-comment.wc-comment .wc-comment-header .wpd-private{background: #999999; color: #ffffff;}
+                /* FOLLOW LINK */
+
+                #wpcomm .wc-follow{color:#777777;}
+                #wpcomm .wc-follow-active{color:#ff7a00;}
+                #wpcomm .wc-follow:hover i,
+                #wpcomm .wc-unfollow:hover i,
+                #wpcomm .wc-follow-active:hover i{color:#00B38F;}
+                                .wpd-wrapper .wpd-list-item.wpd-active{border-top: 3px solid #00B38F;}
+                                .comments-area{width:auto; margin: 0 auto;}
+            </style>
+
+<style type="text/css">.car-collapse .car-yearmonth { cursor: s-resize; } </style>
+
+<style>.ezoic-ad.box-2 { display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:90px;min-width:728px;text-align:center !important; }
+.ezoic-ad.box-3 { display:block !important;float:none !important;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:400px;min-width:580px;text-align:center !important; }
+.ezoic-ad.medrectangle-3 { display:block !important;float:none !important;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:250px;min-width:300px;text-align:center !important; }
+.ezoic-ad.medrectangle-4 { display:block !important;float:none !important;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:90px;min-width:970px;text-align:center !important; }
+.ezoic-ad.box-4 { display:block !important;float:none !important;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:250px;min-width:970px;text-align:center !important; }
+.ezoic-ad.banner-1 { display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:90px;min-width:970px;text-align:center !important; }
+.ezoic-ad.large-leaderboard-2 { display:block !important;float:none !important;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:250px;min-width:970px;text-align:center !important; }
+.ezoic-ad.box-1 { display:block !important;float:none !important;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:600px;min-width:300px;text-align:center !important; }
+.ezoic-ad.large-billboard-2 { display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:280px;min-width:336px;text-align:center !important; }
+.ezoic-ad.large-leaderboard-1 { display:block !important;float:none;margin-bottom:20px !important;margin-left:0px !important;margin-right:0px !important;margin-top:20px !important;min-height:600px;min-width:160px;text-align:center !important; }
+.ezoic-ad{display:inline-block;}
+.ezoic-ad .ezoic-ad{border:1px #c0c0c047 solid;border-radius:6px;overflow:hidden;background:url("/utilcave_com/l.svg") no-repeat center center}.ezoic-ad .ezfound,.ezmob-footer .ezoic-ad .ezoic-ad,.ezoic-ad-adaptive > .ezoic-ad, .ezoic-ad-rl {background:0 0;border-radius:0;border:none}
+.adtester-container-100{display:none !important}
+.adtester-container-118{display:none !important}
+.adtester-container-112{display:none !important}
+.adtester-container-119{display:none !important}
+.ezoic-floating-bottom { display: none!important; }</style>
+<link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-37/html/container.html">
+<style type="text/css">svg.icon {fill: currentColor;}</style><style type="text/css">svg.icon {fill: currentColor;}</style>
+<style type="text/css">svg.icon {fill: currentColor;}</style><style type="text/css">svg.icon {fill: currentColor;}</style>
+</head>
+
+<body class="post-template-default single single-post postid-25173 single-format-standard wpdiscuz_5.3.5 cookies-not-set menu-loaded" style="transition: margin .3s ease-out; margin-top: 0px !important">
+<div id="wrap">
+<div id="content" class="container">
+<div class="container-inner">
+<div class="flex-wrap">
+<div id="main" class="flex-col clearfix" role="main">
+<article id="post-25173" class="clearfix post-25173 post type-post status-publish format-standard has-post-thumbnail hentry category-algorithms" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+<meta itemscope="" itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://google.com/article">
+<meta itemprop="datePublished" content="2017-10-10T20:11:46+0200">
+<meta itemprop="dateModified" content="2019-08-15T04:45:43+0200">
+<header>
+
+<div class="page-header"><h1 class="single-title entry-title" itemprop="headline">Deeeplearning4j 指南</h1>
+
+<div class="meta-row">
+<span itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
+<meta itemprop="url" content="https://www.baeldung.com/wp-content/uploads/2017/08/On-Baeldung-2.jpg">
+<meta itemprop="width" content="208">
+<meta itemprop="height" content="208">
+</span>
+<span itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+<span itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject">
+<meta itemprop="url" content="https://www.baeldung.com/wp-content/uploads/2017/08/On-Baeldung-2.jpg">
+<meta itemprop="width" content="208">
+<meta itemprop="height" content="208">
+</span>
+<meta itemprop="name" content="Baeldung">
+</span>
+<ul class="categories">
+<li><a href="https://www.baeldung.com/category/algorithms/" rel="category tag">Algorithms</a></li> </ul>
+<ul class="post-tags">
+</ul>
+</div>
+</div>
+</header> 
+
+<section class="post-content clearfix" itemprop="articleBody">
+<div class="wwsgd" style="display:none;"></div>
+<h2 data-id="introduction"><strong> 1. 介绍</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#introduction"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h2>
+<div class="bd-anchor" id="introduction"></div>
+<p><a href="https://deeplearning4j.org/">deeplearning4j</a> (dl4j) DeepLearning4j(dl4j)是使用Java进行机器学习的十分流行且功能强大的库。我们将在本文中使用DeepLearning4j(dl4j)的java库来建立一个简单的神经网络。</p>
+<p>开始之前需要提醒大家的是：本文不需要你深入了解“线性代数”、“统计学”、“机器学习理论”和机器学习工程师掌握的其它很多知识，你一样能轻松学习和理解本文中的知识。</p>
+
+<h2 data-id="what-is-deep-learning"><strong>2. 什么是深度学习？</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#what-is-deep-learning"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h2>
+<div class="bd-anchor" id="what-is-deep-learning"></div>
+<p>神经网络的深度学习是一种计算模型，该模型中很多层(layer)相互连接，并且每一层都有很多节点（node）。</p>
+<p>每个节点（node）都是一个类似神经元的数字处理器。一个节点首先获取输入数据，将这些数据进行处理（包括设置权重和函数计算），然后将处理结果传送至输出节点。这样的神经网络可以用人们提供的数据源样例来进行训练。</p>
+<p>训练的主要目的是让节点保存一些数字（权重），这些数字用于以后调整学习到的计算公式。训练样本会包括有某些特征的数据项和这些数据项的预知分类（比如：一个16*16像素的图是一个手写的字母“a”）。</p>
+<p>训练结束以后，神经网络就可以用全新的数据来生成结果。就算神经网络从来都没有看见过这些全新数据，也同样可以生成结果。一个好的模型加上有效训练过而形成的神经网络，可以识别图像、手写文字、语音、处理统计数据并将结果用于商业智能，还有其它更多的场景。</p>
+<p>深度神经网络在最近几年变得流行，是因为高性能计算和并行计算得到长足进步。深度神经网络不同于简单神经网络，它由很多中间层（隐藏层）组成。这种结构能够让神经网络用更复杂的方式（比如：递归、循环、卷积等等）处理数据。从数据中抽取出更多的信息。</p>
+
+<h2 data-id="setting-up-the-project"><strong>3. 创建工程</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#setting-up-the-project"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h2>
+<div class="bd-anchor" id="setting-up-the-project"></div>
+<p>为了使用deeplearning4j库，我们用到的java最低版本是Java 7。并且由于dl4j会引用其它机器学习的本地实现，所以只能使用64位的JVM版本。</p>
+<p>我们可以通过下面的命令来检查java是否满足需求：</p>
+<div><div id="highlighter_327517" class="syntaxhighlighter notranslate bash"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">$ java -version</code></div><div class="line number2 index1 alt1"><code class="bash plain">java version </code><code class="bash string">"1.8.0_131"</code></div><div class="line number3 index2 alt2"><code class="bash plain">Java(TM) SE Runtime Environment (build 1.8.0_131-b11)</code></div><div class="line number4 index3 alt1"><code class="bash plain">Java HotSpot(TM) 64-Bit Server VM (build 25.131-b11, mixed mode)</code></div></div></td></tr></tbody></table></div></div>
+<p>首先，往pom.xml文件中添加需要的库文件。我们把库文件的版本号提取到属性项里面去（最新的版本号，查看<a href="https://search.maven.org/classic/#search%7Cga%7C1%7Cg%3A%22org.deeplearning4j%22">Maven Central</a> 仓库）</p>
+<div><div id="highlighter_117316" class="syntaxhighlighter notranslate xml"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">properties</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">dl4j.version</code><code class="xml plain">&gt;0.9.1&lt;/</code><code class="xml keyword">dl4j.version</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">properties</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">dependencies</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;org.nd4j&lt;/</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;nd4j-native-platform&lt;/</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">version</code><code class="xml plain">&gt;${dl4j.version}&lt;/</code><code class="xml keyword">version</code><code class="xml plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div><div class="line number14 index13 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;org.deeplearning4j&lt;/</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;</code></div><div class="line number15 index14 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;deeplearning4j-core&lt;/</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;</code></div><div class="line number16 index15 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">version</code><code class="xml plain">&gt;${dl4j.version}&lt;/</code><code class="xml keyword">version</code><code class="xml plain">&gt;</code></div><div class="line number17 index16 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div><div class="line number18 index17 alt1"><code class="xml plain">&lt;/</code><code class="xml keyword">dependencies</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+<p>请注意<em>nd4j-native-platform</em> 是神经网络深度学习的多个实现中的其中一个。</p>
+<p>它依赖于不同平台（比如：macOS，windows，Linux，Android等等）的本地库。如果我们想使用显卡来参与计算，可以切换成nd4j-cuda-8.0-platform版本, 它支持CUDA计算模型。</p>
+
+<h2 data-id="preparing-the-data"><strong>4. 准备数据</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#preparing-the-data"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h2>
+<div class="bd-anchor" id="preparing-the-data"></div>
+<h3 data-id="1-preparing-the-dataset-file"><strong>4.1 准备数据文件</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#1-preparing-the-dataset-file"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h3>
+<div class="bd-anchor" id="1-preparing-the-dataset-file"></div>
+<p>我们将实现一个机器学习版本的Hello World（ <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">鸢尾花的分类</a>）。这个数据集采集了不同品种的花（鸢尾，杂色鸢尾和弗吉尼亚鸢尾）。</p>
+<p>这些不同品种的鸢尾花，它们的花瓣和萼片的长度和宽度不一样。如果要写出一个精确的算法来分类这些数据非常困难（比如：判断哪一种花属于什么品种）。但可以容易的实现一个训练良好的神经网络，进行快速、且极少差错的将它们分类出来。</p>
+<p>我们将使用CSV格式的数据，它的0至3列包含了花品种的不同特征，第4列包含了这条数据属于哪个品种，品种以编码的形式记录为0,1,2：</p>
+<div><div id="highlighter_641301" class="syntaxhighlighter notranslate bash"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">5.1,3.5,1.4,0.2,0</code></div><div class="line number2 index1 alt1"><code class="bash plain">4.9,3.0,1.4,0.2,0</code></div><div class="line number3 index2 alt2"><code class="bash plain">4.7,3.2,1.3,0.2,0</code></div><div class="line number4 index3 alt1"><code class="bash plain">…</code></div><div class="line number5 index4 alt2"><code class="bash plain">7.0,3.2,4.7,1.4,1</code></div><div class="line number6 index5 alt1"><code class="bash plain">6.4,3.2,4.5,1.5,1</code></div><div class="line number7 index6 alt2"><code class="bash plain">6.9,3.1,4.9,1.5,1</code></div><div class="line number8 index7 alt1"><code class="bash plain">…</code></div></div></td></tr></tbody></table></div></div>
+
+<h3 data-id="2-vectorizing-and-reading-the-data"><strong>4.2 向量化读取数据</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#2-vectorizing-and-reading-the-data"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h3>
+<div class="bd-anchor" id="2-vectorizing-and-reading-the-data"></div>
+<p>我们把类别转换为数字是因为神经网络只能处理数字。将真实世界中的数据转换成一串数字（向量）称为向量化 -- deeplearning4j 使用 datavec 库来处理。</p>
+<p>首先， 我们使用该库将文本文件转换成向量数据。新建CSVRecordReader对象的时候，我们需要指定需要跳过的行数（比如：该文件包括标题行）和分隔符号（这里我们使用的是逗号）：</p>
+<div><div id="highlighter_985503" class="syntaxhighlighter notranslate java"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">try</code> <code class="java plain">(RecordReader recordReader = </code><code class="java keyword">new</code> <code class="java plain">CSVRecordReader(</code><code class="java value">0</code><code class="java plain">, </code><code class="java string">','</code><code class="java plain">)) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">recordReader.initialize(</code><code class="java keyword">new</code> <code class="java plain">FileSplit(</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">new</code> <code class="java plain">ClassPathResource(</code><code class="java string">"iris.txt"</code><code class="java plain">).getFile()));</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// …</code></div><div class="line number6 index5 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>我们可以使用DataSetIterator 接口的多个方法实现来遍历数据集。如果数据集非常巨大，使用它提供的分页功能和缓存功能就非常方便。</p>
+<p>因为我们的数据集很小只有150条数据，所以我们调用iterator.next()方法将它们一次性的读入内存。</p>
+<p>我们也指定了鸢尾花品种所在的列，代码里是FEATURES_COUNT（4）和类别的总数CLASSES_COUNT（3）。</p>
+<p>同时，需要注意我们必须打乱数据，从而避免原始文件里面使用品种排过序。</p>
+<p>我们指定随机数种子为42，而不是默认的System.currentTimeMillis()方法产生的不同的数，这样我们每次打乱数据后结果都会一样，使得我们每次运行程序得到的结果都一样。</p>
+<div><div id="highlighter_704530" class="syntaxhighlighter notranslate java"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">DataSetIterator iterator = </code><code class="java keyword">new</code> <code class="java plain">RecordReaderDataSetIterator(</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">recordReader, </code><code class="java value">150</code><code class="java plain">, FEATURES_COUNT, CLASSES_COUNT);</code></div><div class="line number3 index2 alt2"><code class="java plain">DataSet allData = iterator.next();</code></div><div class="line number4 index3 alt1"><code class="java plain">allData.shuffle(</code><code class="java value">42</code><code class="java plain">);</code></div></div></td></tr></tbody></table></div></div>
+
+<h3 data-id="3-normalizing-and-splitting"><strong>4.3 格式化和拆分</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#3-normalizing-and-splitting"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h3>
+<div class="bd-anchor" id="3-normalizing-and-splitting"></div>
+<p>在进行训练之前，我们还需要对数据进行格式化。格式化分为两个阶段：</p>
+<ul>
+<li>获取数据的一些统计数据（fit）</li>
+<li>将数据通过一些方式变化（转换）成统一风格</li>
+</ul>
+<p><strong>格式化对不同类型的数据是不同的。</strong></p>
+<p>比如，如果我们要处理不同尺寸的图像，我们需要首先收集图像尺寸的统计数据，然后将他们缩放成统一的尺寸。</p>
+<p>But但是对数字而言，格式化一般都是指转换成符合正态分布。NormalizerStandardize类可以帮到我们：</p>
+<div><div id="highlighter_444847" class="syntaxhighlighter notranslate java"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">DataNormalization normalizer = </code><code class="java keyword">new</code> <code class="java plain">NormalizerStandardize();</code></div><div class="line number2 index1 alt1"><code class="java plain">normalizer.fit(allData);</code></div><div class="line number3 index2 alt2"><code class="java plain">normalizer.transform(allData);</code></div></div></td></tr></tbody></table></div></div>
+<p>现在数据已经准备就绪，我们需要把数据集拆分成两个部分。</p>
+<p>第一部分用于以后的训练部分。我们使用第二部分（神经网络完全没有见到过这部分数据）来测试训练好的神经网络。</p>
+<p>它就可以让我们验证分类的正确性。我们取其中65%的数据(0.65)用来训练，留下剩下的35%的数据用于测试:</p>
+<div><div id="highlighter_690832" class="syntaxhighlighter notranslate java"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">SplitTestAndTrain testAndTrain = allData.splitTestAndTrain(</code><code class="java value">0.65</code><code class="java plain">);</code></div><div class="line number2 index1 alt1"><code class="java plain">DataSet trainingData = testAndTrain.getTrain();</code></div><div class="line number3 index2 alt2"><code class="java plain">DataSet testData = testAndTrain.getTest();</code></div></div></td></tr></tbody></table></div></div>
+
+<h2 data-id="preparing-the-network-configuration"><strong>5. 准备神经网络配置</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#preparing-the-network-configuration"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h2>
+<div class="bd-anchor" id="preparing-the-network-configuration"></div>
+
+<h3 data-id="1-fluent-configuration-builder"><strong>5.1 流式配置构建器</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#1-fluent-configuration-builder"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h3>
+<div class="bd-anchor" id="1-fluent-configuration-builder"></div>
+<p>现在可以使用流式构建器来构建我们的神经网络：</p>
+<div><div id="highlighter_389313" class="syntaxhighlighter notranslate java"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">MultiLayerConfiguration configuration </code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">= </code><code class="java keyword">new</code> <code class="java plain">NeuralNetConfiguration.Builder()</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.iterations(</code><code class="java value">1000</code><code class="java plain">)</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.activation(Activation.TANH)</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.weightInit(WeightInit.XAVIER)</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.learningRate(</code><code class="java value">0.1</code><code class="java plain">)</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.regularization(</code><code class="java keyword">true</code><code class="java plain">).l2(</code><code class="java value">0.0001</code><code class="java plain">)</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.list()</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.layer(</code><code class="java value">0</code><code class="java plain">, </code><code class="java keyword">new</code> <code class="java plain">DenseLayer.Builder().nIn(FEATURES_COUNT).nOut(</code><code class="java value">3</code><code class="java plain">).build())</code></div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.layer(</code><code class="java value">1</code><code class="java plain">, </code><code class="java keyword">new</code> <code class="java plain">DenseLayer.Builder().nIn(</code><code class="java value">3</code><code class="java plain">).nOut(</code><code class="java value">3</code><code class="java plain">).build())</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.layer(</code><code class="java value">2</code><code class="java plain">, </code><code class="java keyword">new</code> <code class="java plain">OutputLayer.Builder(</code></div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)</code></div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.activation(Activation.SOFTMAX)</code></div><div class="line number14 index13 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.nIn(</code><code class="java value">3</code><code class="java plain">).nOut(CLASSES_COUNT).build())</code></div><div class="line number15 index14 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.backprop(</code><code class="java keyword">true</code><code class="java plain">).pretrain(</code><code class="java keyword">false</code><code class="java plain">)</code></div><div class="line number16 index15 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.build();</code></div></div></td></tr></tbody></table></div></div>
+<p>虽然我们使用了简化版本的流式构建器来构造神经网络模型，也有很多知识需要消化，也有很多参数可以调整。下面我们把该模型分开来说。</p>
+
+<h3 data-id="2-setting-network-parameters"><strong>5.2 设置神经网络参数</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#2-setting-network-parameters"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h3>
+<div class="bd-anchor" id="2-setting-network-parameters"></div>
+<p><strong>这里的iterations()构造方法指定了迭代优化的次数。</strong></p>
+<p>这里迭代优化的意思是对训练集执行多次遍历，直到神经网络收敛到良好的结果为止。</p>
+<p>通常，当我们训练真实的大数据集时，我们使用多个epochs(所有的数据全部通过了网络)，每一个epoch作为一个迭代。但是因为我们的初始数据集很小，我们使用一个epoch和多个迭代。</p>
+<p><strong>这里的activation() 是一个运行在节点内部的函数，该函数决定了输出数据。</strong></p>
+<p>最简单的激活函数可以是线性的 f(x)=x。但是事实表明只有非线性函数才能让神经网络使用多个节点从而解决复杂任务。</p>
+<p>deeplearning4j预设了很多不同的激活函数，可以在org.nd4j.linalg.activations.Activation枚举类中找到。如果必要的话，我们也可以编写自己的激活函数。但是我们这里直接使用预设的tanh双曲函数。</p>
+<p>这里的weightInit()也可以从多种方式中选择一个，用来设置神经网络的初始化权重。正确的初始化权重可以显著的影响训练结果。为了不深究从数学知识，我们直接设置成高斯分布(WeightInit.XAVIER)的形式，这个设置是学习阶段很好的选择。</p>
+<p>其它所有的权重初始化方法可以在<em>org.deeplearning4j.nn.weights.WeightInit</em>枚举类中找到。</p>
+<p><strong>Learning rate(学习速度)</strong> 是一个关键参数，它将显著的影响神经网络的学习能力。</p>
+<p>在复杂的情况下，我们需要花很长时间来调整该参数。但是对于我们现在这个简单任务，我们使用非常明显的值0.1，并且通过learningRate()方法来设置。</p>
+<p>训练神经网络中很多问题中的一个是过度拟合，如果神经网络“记住”了训练数据的时候会发生过度拟合。</p>
+<p>当神经网络为训练数据设置过分高的权重，这是对其它新数据反而会产生很差的结果，这时就发生了过度拟合。</p>
+<p>为了解决这个问题，我们设置了L2正则化，代码为.regularization(true).l2(0.0001)。这样当正则化在太大权重时会“惩罚”神经网络，从而避免过度拟合。</p>
+
+<h3 data-id="3-building-network-layers"><strong>5.3 创建神经网络层级</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#3-building-network-layers"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h3>
+<div class="bd-anchor" id="3-building-network-layers"></div>
+<p>下一步，我们开始创建神经网络的密集（也称为全连接）层级。</p>
+<p>第一层需要包含跟训练数据中的列中相同多数量(4)的节点。</p>
+<p>第二个密集层包含三个节点。这个数值是可以调整的。但是输出层和它的前一层的数量必须一样。</p>
+<p>最后是输出层需要包含的节点数量必须跟鸢尾花品种的数量（3）一样。神经网络结果如下图所示：</p>
+<a href="https://www.baeldung.com/wp-content/uploads/2017/10/Untitled-Diagram.png" target="_blank"><img class="wp-image-25217 aligncenter" src="./A Guide to Deeplearning4j _ Baeldung_files/Untitled-Diagram-300x212.png" alt="" width="519" height="367" srcset="https://www.baeldung.com/wp-content/uploads/2017/10/Untitled-Diagram-300x212.png 300w, https://www.baeldung.com/wp-content/uploads/2017/10/Untitled-Diagram.png 447w" sizes="(max-width: 519px) 100vw, 519px"></a>
+<p>当成功完成训练以后，我们将拥有一个神经网络，它输入参数是4个值，然后发送一个信号到三个输出节点中的一个。这就是简单分类神经网络。</p>
+<p>创建神经网络的最后一步，我们通过.backprop(true).pretrain(false).设置了反向传播（一个最有效的训练方法）并且禁止了预训练。</p>
+
+<h2 data-id="creating-and-training-a-network"><strong>6. 创建和训练网络</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#creating-and-training-a-network"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h2>
+<div class="bd-anchor" id="creating-and-training-a-network"></div>
+<p>现在我们开始通过配置好的configuration来创建神经网络，初始化它并运行它：</p>
+<div><div id="highlighter_830153" class="syntaxhighlighter notranslate java"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">MultiLayerNetwork model = </code><code class="java keyword">new</code> <code class="java plain">MultiLayerNetwork(configuration);</code></div><div class="line number2 index1 alt1"><code class="java plain">model.init();</code></div><div class="line number3 index2 alt2"><code class="java plain">model.fit(trainingData);</code></div></div></td></tr></tbody></table></div></div>
+<p>下面我们可以使用剩下的数据集测试这个训练模型，并且通过评估3个品种的指标来验证结果：</p>
+<div><div id="highlighter_638985" class="syntaxhighlighter notranslate java"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">INDArray output = model.output(testData.getFeatureMatrix());</code></div><div class="line number2 index1 alt1"><code class="java plain">Evaluation eval = </code><code class="java keyword">new</code> <code class="java plain">Evaluation(</code><code class="java value">3</code><code class="java plain">);</code></div><div class="line number3 index2 alt2"><code class="java plain">eval.eval(testData.getLabels(), output);</code></div></div></td></tr></tbody></table></div></div>
+<p>我们通过打印eval.stats()，可以看到我们的神经网络对鸢尾花的分类工作表现很好，仅仅对分类1和分类2错误识别了3次。</p>
+<div><div id="highlighter_952005" class="syntaxhighlighter notranslate bash"><div class="toolbar"><span><a href="https://www.baeldung.com/deeplearning4j#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">Examples labeled as 0 classified by model as 0: 19 </code><code class="bash functions">times</code></div><div class="line number2 index1 alt1"><code class="bash plain">Examples labeled as 1 classified by model as 1: 16 </code><code class="bash functions">times</code></div><div class="line number3 index2 alt2"><code class="bash plain">Examples labeled as 1 classified by model as 2: 3 </code><code class="bash functions">times</code></div><div class="line number4 index3 alt1"><code class="bash plain">Examples labeled as 2 classified by model as 2: 15 </code><code class="bash functions">times</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="bash plain">==========================Scores========================================</code></div><div class="line number7 index6 alt2"><code class="bash comments"># of classes: 3</code></div><div class="line number8 index7 alt1"><code class="bash plain">Accuracy: 0.9434</code></div><div class="line number9 index8 alt2"><code class="bash plain">Precision: 0.9444</code></div><div class="line number10 index9 alt1"><code class="bash plain">Recall: 0.9474</code></div><div class="line number11 index10 alt2"><code class="bash plain">F1 Score: 0.9411</code></div><div class="line number12 index11 alt1"><code class="bash plain">Precision, recall &amp; F1: macro-averaged (equally weighted avg. of 3 classes)</code></div><div class="line number13 index12 alt2"><code class="bash plain">========================================================================</code></div></div></td></tr></tbody></table></div></div>
+<p>流式配置构造器允许我们很快的添加或修改神经网络的层级，或则调整一些参数从而验证我们的模型是否有所改善。</p>
+
+<h2 data-id="conclusion"><strong>7. 结论</strong><a class="anchor-link" href="https://www.baeldung.com/deeplearning4j#conclusion"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="482.136px" height="482.135px" viewBox="0 0 482.136 482.135" style="enable-background:new 0 0 482.136 482.135;" xml:space="preserve"><g><path d="M455.482,198.184L326.829,326.832c-35.535,35.54-93.108,35.54-128.646,0l-42.881-42.886l42.881-42.876l42.884,42.876   c11.845,11.822,31.064,11.846,42.886,0l128.644-128.643c11.816-11.831,11.816-31.066,0-42.9l-42.881-42.881   c-11.822-11.814-31.064-11.814-42.887,0l-45.928,45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526   c35.535-35.521,93.136-35.521,128.644,0l42.886,42.881C491.018,105.045,491.018,162.663,455.482,198.184z M201.206,366.698   l-45.903,45.9c-11.845,11.846-31.064,11.817-42.881,0l-42.884-42.881c-11.845-11.821-11.845-31.041,0-42.886l128.646-128.648   c11.819-11.814,31.069-11.814,42.884,0l42.886,42.886l42.876-42.886l-42.876-42.881c-35.54-35.521-93.113-35.521-128.65,0   L26.655,283.946c-35.538,35.545-35.538,93.146,0,128.652l42.883,42.882c35.51,35.54,93.11,35.54,128.646,0l72.496-72.499   C246.724,384.578,222.588,379.197,201.206,366.698z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></h2>
+<div class="bd-anchor" id="conclusion"></div>
+<p>通过这篇文章，我们使用deeplearning4j建立一个简单但是强大的神经网络。</p>
+<p>跟以前一样，本文的源代码可以在<a href="https://github.com/eugenp/tutorials/tree/master/deeplearning4j">GitHub</a>中找到。.</p>
+
+<span id="tve_leads_end_content" style="display: block; visibility: hidden; border: 1px solid transparent;"></span>
+<div class="after-post-widgets"><div data-sticky-weight="1" data-height-limit="" data-stickyness="sticky" class="after-post-content-widget"><span style="display:none;">Generic bottom</span> <div class="textwidget">
+</div>
+</div></div>
+<span id="ezoic-pub-ad-placeholder-119" class="ezoic-adpicker-ad"></span></section> 
+ 
+</article> 
+<div class="wpdiscuz_top_clearing"></div>
+<div id="wpdiscuz-loading-bar" class="wpdiscuz-loading-bar wpdiscuz-loading-bar-unauth"></div>
+<div class="code-block code-block-17" style="margin: 8px 0; clear: both;">
+
+<span id="ezoic-pub-ad-placeholder-112"></span></div>
+</div> 
+
+</div> 
+</div> 
+</div> 
+
+</div> 
+
+<a id="wpdUserContentInfoAnchor" style="display:none;" rel="#wpdUserContentInfo" data-wpd-lity="">wpDiscuz</a>
+<div id="wpdUserContentInfo" style="overflow:auto;background:#FDFDF6;padding:20px;width:600px;max-width:100%;border-radius:6px;" class="lity-hide"></div>
+<div id="dmo1" style="display: none;">
+</body>
+</html>
