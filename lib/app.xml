@@ -1,0 +1,35 @@
+{
+	"ts": 1593848050388,
+	"uri": "https://raw.githubusercontent.com/fazhong/javadoc/master/lib/",
+	"launchClass": "com.cloudease.animation.AnimationApplication",
+	"files": [
+		{
+			"file": "animation.properties",
+			"checksum": 3875035437,
+			"size": 10313
+		},
+		{
+			"file": "animationApp-1.0.0.jar",
+			"checksum": 3764865237,
+			"size": 208715,
+			"os": "win"
+		},
+		{
+			"file": "animationAppDex-1.0.0.jar",
+			"checksum": 2504295867,
+			"size": 113309,
+			"os": "android"
+		}
+	],
+	"updateText": "Updating...",
+	"updateLabelStyle": "-fx-font-weight: bold;",
+	"progressBarStyle": "-fx-pref-width: 200;",
+	"wrapperStyle": "-fx-spacing: 10; -fx-padding: 25;",
+	"parameters": null,
+	"cacheDir": null,
+	"acceptDowngrade": false,
+	"stopOnUpdateErrors": false,
+	"preloadNativeLibraries": null,
+	"whatsNewPage": null,
+	"lingeringUpdateScreen": false
+}
