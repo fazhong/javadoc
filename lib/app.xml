@@ -1,5 +1,5 @@
 {
-	"ts": 1598077578654,
+	"ts": 1598081770371,
 	"uri": "https://raw.githubusercontent.com/fazhong/javadoc/master/lib/",
 	"launchClass": "com.cloudease.animation.AnimationApplication",
 	"files": [
@@ -10,14 +10,14 @@
 		},
 		{
 			"file": "animationApp-1.0.0.jar",
-			"checksum": 733743977,
-			"size": 247919,
+			"checksum": 312001086,
+			"size": 247895,
 			"os": "win"
 		},
 		{
 			"file": "animationAppDex-1.0.0.jar",
-			"checksum": 2899031427,
-			"size": 133990,
+			"checksum": 523249965,
+			"size": 133931,
 			"os": "android"
 		}
 	],
