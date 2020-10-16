@@ -4,19 +4,19 @@
   "launchClass": "com.cloudease.animation.AnimationApplication",
   "files": [
     {
-      "file": "/Users/yeeric/git/javadoc/lib/animationAppDex-1.0.0.jar",
+      "file": "animationAppDex-1.0.0.jar",
       "checksum": 2211402037,
       "size": 159357,
       "os": "android"
     },
     {
-      "file": "/Users/yeeric/git/javadoc/lib/animationApp-1.0.0.jar",
+      "file": "animationApp-1.0.0.jar",
       "checksum": 3802808003,
       "size": 300243,
       "os": "win"
     },
     {
-      "file": "/Users/yeeric/git/javadoc/lib/animation.properties",
+      "file": "animation.properties",
       "checksum": 3923719858,
       "size": 10814
     }
