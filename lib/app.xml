@@ -1,35 +1,35 @@
 {
-	"ts": 1602838119600,
-	"uri": "https://raw.githubusercontent.com/fazhong/javadoc/master/lib/",
-	"launchClass": "com.cloudease.animation.AnimationApplication",
-	"files": [
-		{
-			"file": "animation.properties",
-			"checksum": 1833320432,
-			"size": 10996
-		},
-		{
-			"file": "animationApp-1.0.0.jar",
-			"checksum": 1480179195,
-			"size": 300061,
-			"os": "win"
-		},
-		{
-			"file": "animationAppDex-1.0.0.jar",
-			"checksum": 1700571555,
-			"size": 157242,
-			"os": "android"
-		}
-	],
-	"updateText": "Updating...",
-	"updateLabelStyle": "-fx-font-weight: bold;",
-	"progressBarStyle": "-fx-pref-width: 200;",
-	"wrapperStyle": "-fx-spacing: 10; -fx-padding: 25;",
-	"parameters": null,
-	"cacheDir": null,
-	"acceptDowngrade": false,
-	"stopOnUpdateErrors": false,
-	"preloadNativeLibraries": null,
-	"whatsNewPage": null,
-	"lingeringUpdateScreen": false
+  "ts": 1602863137263,
+  "uri": "https://raw.githubusercontent.com/fazhong/javadoc/master/lib/",
+  "launchClass": "com.cloudease.animation.AnimationApplication",
+  "files": [
+    {
+      "file": "/Users/yeeric/git/javadoc/lib/animationAppDex-1.0.0.jar",
+      "checksum": 2211402037,
+      "size": 159357,
+      "os": "android"
+    },
+    {
+      "file": "/Users/yeeric/git/javadoc/lib/animationApp-1.0.0.jar",
+      "checksum": 3802808003,
+      "size": 300243,
+      "os": "win"
+    },
+    {
+      "file": "/Users/yeeric/git/javadoc/lib/animation.properties",
+      "checksum": 3923719858,
+      "size": 10814
+    }
+  ],
+  "updateText": "Updating...",
+  "updateLabelStyle": "-fx-font-weight: bold;",
+  "progressBarStyle": "-fx-pref-width: 200;",
+  "wrapperStyle": "-fx-spacing: 10; -fx-padding: 25;",
+  "parameters": null,
+  "cacheDir": null,
+  "acceptDowngrade": false,
+  "stopOnUpdateErrors": false,
+  "preloadNativeLibraries": null,
+  "whatsNewPage": null,
+  "lingeringUpdateScreen": false
 }
