@@ -1,6 +1,6 @@
 {
-  "ts": 1604893757703,
-  "uri": "https://raw.githubusercontent.com/fazhong/javadoc/master/lib/",
+  "ts": 1663057881689,
+  "uri": "https://gitee.com/fazhong/paintxx/raw/master/lib/",
   "launchClass": "com.cloudease.animation.AnimationApplication",
   "files": [
     {
@@ -11,8 +11,8 @@
     },
     {
       "file": "animationApp-1.0.0.jar",
-      "checksum": 1191458875,
-      "size": 346090,
+      "checksum": 3780344139,
+      "size": 348265,
       "os": "win"
     },
     {
